@@ -3,7 +3,10 @@ import { AppContext } from '../context/AppContext';
 
 const CurrencyList =() =>
 {
-    const { currency1 ,dispatch} = useContext(AppContext);
+    const { currency1 ,dispatch , currency} = useContext(AppContext);
+    
+    console.log(currency1);
+    console.log(currency1.key(currency))
 
     const onChange= (e)=>
     {
@@ -16,7 +19,7 @@ const CurrencyList =() =>
 
     
         return (
-            <div> Currency (
+            <div> Currency ( {currency1[currency]})
             <select onChange={onChange}>
             {currency1.map((currency) => {
               const symbol = Object.keys(currency)[0];
@@ -24,14 +27,13 @@ const CurrencyList =() =>
               console.log(symbol);
               console.log(label);
               return (
-                
                 <option key={label} value={symbol}>
                   {symbol} {label}
                 </option>
               );
             })}
           </select>
-            )</div>
+            </div>
         );
       };
       
