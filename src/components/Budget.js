@@ -69,23 +69,26 @@ const Budget = () => {
   };
 
   return (
-    <div className='alert alert-secondary'>
-      <span id='Budget'>
-        Budget: {currency}
-        <input
-          ref={inputRef}
-          type='number'
-          max='20000'
-          step='10'
-          value={budget}
-          onChange={handleBudgetChange}
-          onClick={handleInputClick}
-          onMouseUp={incrementBudget}
-          onMouseDown={decrementBudget}
-          onFocus={handleInputFocus}
-        />
-      </span>
+    <div className='alert alert-secondary d-flex align-items-center'>
+    <span className='mr-2'>Budget in {currency}:</span>
+    <div className='d-flex align-items-center'>
+      <input
+        ref={inputRef}
+        type='number'
+        max='20000'
+        step='10'
+        value={budget}
+        onChange={handleBudgetChange}
+        onClick={handleInputClick}
+        onMouseUp={incrementBudget}
+        onMouseDown={decrementBudget}
+        onFocus={handleInputFocus}
+        className='form-control ml-2'
+        style={{marginLeft: '10px',  width: '120px',height: '24.5px' }}
+      />
     </div>
+  </div>
+
   );
 };
 

@@ -15,7 +15,7 @@ const CurrencyList = () => {
   };
 
   return (
-    <div className="dropdown">
+    <div className="dropdown d-flex align-items-stretch" style={{height: '57.5px'}}>
       <button
         className="btn btn-success dropdown-toggle"
         type="button"
