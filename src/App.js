@@ -7,6 +7,9 @@ import ExpenseList from './components/ExpenseList';
 import AllocationForm from './components/AllocationForm';
 import Remaining from './components/Remaining';
 import CurrencyList from './components/CurrencyList';
+
+// make sure to remove node module 
+// then make the command npm install -s
 const App = () => {
     return (
         <AppProvider>
@@ -25,6 +28,8 @@ const App = () => {
                     <div className='col-sm'> 
                     <CurrencyList />
                     </div>
+
+                  
 
                  
                 </div>

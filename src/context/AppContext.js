@@ -19,7 +19,7 @@ export const AppReducer = (state, action) => {
                     if(currentExp.name === action.payload.name) {
                         currentExp.cost = action.payload.cost + currentExp.cost;
                     }
-                    return currentExp
+                    return currentExp;
                 });
                 return {
                     ...state,
@@ -30,6 +30,34 @@ export const AppReducer = (state, action) => {
                     ...state
                 }
             }
+            case 'SUB_EXPENSE':
+            {
+                action.type = "DONE";
+
+                state.expenses.map((currentExp)=>
+                {
+                    if( currentExp.name===action.payload.name)
+                    {
+                        if(currentExp.cost===0)
+                        {
+                            alert("Department Funds for "+action.payload.name+ " is already 0 in "+  state.currency );
+                        }
+                        else
+                        {
+                        currentExp.cost=currentExp.cost-action.payload.cost;
+                        }
+                    }
+                    console.log()
+
+                    return currentExp;
+
+                });
+                return {
+                    ...state
+                };
+            }
+          
+
             case 'RED_EXPENSE':
                 const red_expenses = state.expenses.map((currentExp)=> {
                     if (currentExp.name === action.payload.name && currentExp.cost - action.payload.cost >= 0) {
@@ -103,13 +131,12 @@ const initialState = {
         { id: "IT", name: 'IT', cost: 500 },
     ],
     currency: '£',
-    currency1: [
-      
-        { '£': 'Pound' },
-        { '$': 'Dollar' },
-        { '€': 'Euro' },
-        { '₹': 'Rupee' },
-      ],
+    currency1: {
+    '£': 'Pound',
+    '$': 'Dollar',
+    '€': 'Euro',
+    '₹': 'Rupee',
+    }
     
 };
 

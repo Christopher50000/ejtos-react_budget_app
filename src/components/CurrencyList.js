@@ -1,41 +1,46 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min'; // these were needed to do dropdown 
 
-const CurrencyList =() =>
-{
-    const { currency1 ,dispatch , currency} = useContext(AppContext);
-    
-    console.log(currency1);
-    console.log(currency1.key(currency))
+const CurrencyList = () => {
+  const { currency1, dispatch, currency } = useContext(AppContext);
 
-    const onChange= (e)=>
-    {
-        let NewCurrency=e.target.value;
-        dispatch({
-            type: 'CHG_CURRENCY',
-            payload: NewCurrency
-          });
-    }
+  const onChange = (e) => {
+    let newCurrency = e.target.value;
+    dispatch({
+      type: 'CHG_CURRENCY',
+      payload: newCurrency,
+    });
+  };
 
-    
-        return (
-            <div> Currency ( {currency1[currency]})
-            <select onChange={onChange}>
-            {currency1.map((currency) => {
-              const symbol = Object.keys(currency)[0];
-              const label = Object.values(currency)[0];
-              console.log(symbol);
-              console.log(label);
-              return (
-                <option key={label} value={symbol}>
-                  {symbol} {label}
-                </option>
-              );
-            })}
-          </select>
-            </div>
-        );
-      };
-      
-        
-        export default CurrencyList;
+  return (
+    <div className="dropdown">
+      <button
+        className="btn btn-success dropdown-toggle"
+        type="button"
+        id="currencyDropdown"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Currency ({currency} {currency1[currency]})
+      </button>
+      <ul className="dropdown-menu" aria-labelledby="currencyDropdown">
+        {Object.entries(currency1).map(([symbol, label]) => (
+          <li key={symbol}>
+            <button
+              className="dropdown-item"
+              type="button"
+              value={symbol}
+              onClick={onChange}
+            >
+              {symbol} {label}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default CurrencyList;
